@@ -1,3 +1,4 @@
+'use strict'
 var gulp=require('gulp'),
     /*-------concat合并js---------*/
 concat=require('gulp-concat');
@@ -19,4 +20,11 @@ gulp.task('browser-sync', function() {
     browserSync.init({
         proxy: "localhost:63342/layabox/index.html"
     });
+});
+/*--------------------js语法检测插件----------------*/
+var jslint=require("gulp-jslint");
+gulp.task("jslint",function () {
+  gulp.src("src/js/*.js")
+      .pipe(jslint())//这里可以配置检测
+      .pipe(jslint.reporter("default"))
 });
